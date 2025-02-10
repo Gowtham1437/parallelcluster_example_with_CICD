@@ -7,7 +7,7 @@ HeadNode:
   Networking:
     SubnetId: subnet-0baf76492331b932a
   Ssh:
-    KeyName: /home/ubuntu/key_pairs/daily_use.pem
+    KeyName: daily_use
 
 Scheduling:
   Scheduler: slurm
