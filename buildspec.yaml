@@ -1,0 +1,30 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      python: 3.9
+    commands:
+      - echo "Installing AWS ParallelCluster CLI"
+      - wget https://us-east-1-aws-parallelcluster.s3.amazonaws.com/parallelcluster/3.11.1/installer/pcluster-installer-bundle-3.11.1.825-node-v18.20.3-Linux_x86_64-signed.zip
+      - unzip pcluster-installer-bundle-3.11.1.825-node-v18.20.3-Linux_x86_64-signed.zip -d pcluster-installer-bundle
+      - cd pcluster-installer-bundle
+      - chmod +x install_pcluster.sh
+      - bash install_pcluster.sh
+      - source ~/.bash_profile
+      - pcluster version
+
+  build:
+    commands:
+      - echo "Validating Cluster Configuration"
+      - pcluster validate-cluster-config --config config.yaml
+
+      - echo "Creating/Updating ParallelCluster with Slurm"
+      - pcluster create-cluster --cluster-name my-slurm-cluster --config config.yaml --rollback-on-failure
+
+  post_build:
+    commands:
+      - echo "Cluster Deployment Complete"
+      - pcluster describe-cluster --cluster-name my-slurm-cluster
+
+      - echo "Checking Slurm Configuration"
+      - pcluster ssh my-slurm-cluster --command "sinfo"
