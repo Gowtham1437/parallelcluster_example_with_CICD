@@ -1,0 +1,23 @@
+Region: us-east-1
+Image:
+  Os: alinux2
+
+HeadNode:
+  InstanceType: t2.micro
+  Networking:
+    SubnetId: subnet-0baf76492331b932a
+  Ssh:
+    KeyName: /home/ubuntu/key_pairs/daily_use.pem
+
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute-queue
+      ComputeResources:
+        - Name: t2.micro
+          InstanceType: t2.micro
+          MinCount: 0
+          MaxCount: 2
+      Networking:
+        SubnetIds:
+          - subnet-0baf76492331b932a
