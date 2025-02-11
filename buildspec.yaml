@@ -15,12 +15,11 @@ phases:
 
   build:
     commands:
-      - echo "Validating Cluster Configuration"
+      #- echo "Validating Cluster Configuration"
       #- pcluster validate-cluster-config --cluster-configuration config.yaml
 
       - echo "Creating/Updating ParallelCluster with Slurm"
-      - pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1 \
-      --cluster-configuration config.yaml --rollback-on-failure false
+      - pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1 --cluster-configuration config.yaml --rollback-on-failure false
  
   post_build:
     commands:
