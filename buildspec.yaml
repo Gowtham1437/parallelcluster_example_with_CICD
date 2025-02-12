@@ -24,6 +24,6 @@ phases:
   post_build:
     commands:
       - echo "Cluster Deployment Complete"
-      #- pcluster describe-cluster --cluster-name my-slurm-cluster
+      - pcluster describe-cluster --cluster-name my-slurm-cluster
       - echo "Checking Slurm Configuration"
       #- pcluster ssh my-slurm-cluster --command "sinfo"
