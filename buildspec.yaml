@@ -19,11 +19,11 @@ phases:
   build:
     commands:
       - echo "Creating/Updating ParallelCluster with Slurm"
-      - pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1 \
-   --cluster-configuration config.yaml --rollback-on-failure false
+      #- pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1\
+        # --cluster-configuration config.yaml --rollback-on-failure false
   post_build:
     commands:
       - echo "Cluster Deployment Complete"
-      - pcluster describe-cluster --cluster-name my-slurm-cluster
+      #- pcluster describe-cluster --cluster-name my-slurm-cluster
       - echo "Checking Slurm Configuration"
-      - pcluster ssh my-slurm-cluster --command "sinfo"
+      #- pcluster ssh my-slurm-cluster --command "sinfo"
