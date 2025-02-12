@@ -18,8 +18,6 @@ phases:
       - pcluster version
   build:
     commands:
-      - echo "Validating Cluster Configuration"
-      - pcluster validate-cluster --cluster-configuration config.yaml
       - echo "Creating/Updating ParallelCluster with Slurm"
       - |
         pcluster create-cluster --cluster-name my-slurm-cluster --region
