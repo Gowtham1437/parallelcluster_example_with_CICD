@@ -20,8 +20,7 @@ phases:
     commands:
       - echo "Creating/Updating ParallelCluster with Slurm"
       - ls
-      - pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1 \
-         --cluster-configuration ../config.yaml 
+      - pcluster create-cluster --cluster-name my-slurm-cluster --region us-east-1 --cluster-configuration ../config.yaml 
   post_build:
     commands:
       - echo "Cluster Deployment Complete"
