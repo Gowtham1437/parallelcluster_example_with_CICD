@@ -1,0 +1,36 @@
+Region: us-east-1  # Change this to your AWS region
+
+Image:
+  Os: alinux2  # Choose OS: alinux2, ubuntu2004, ubuntu2204, centos7
+
+HeadNode:
+  InstanceType: t2.micro  # Adjust based on your needs
+  Networking:
+    SubnetId: subnet-03ae42bee932243fa  # Replace with your subnet
+  Iam:
+    S3Access:
+      - BucketName: parallelcluster-6ab1f844b1d5d0e5-v1-do-not-delete  # Allow access to S3 bucket
+  CustomActions:
+    OnNodeConfigured:
+      Script: s3://parallelcluster-6ab1f844b1d5d0e5-v1-do-not-delete/parallelcluster/install_gromacs_efs.sh  # Bootstrap script for GROMACS
+  Ssh:
+    KeyName: daily_use
+Scheduling:
+  Scheduler: slurm
+  SlurmQueues:
+    - Name: compute
+      ComputeResources:
+        - Name: t2micro
+          InstanceType: t2.micro  # Adjust for GROMACS workloads
+          MinCount: 0
+          MaxCount: 2
+      Networking:
+        SubnetIds:
+          - subnet-0043f46b606c32344  # Replace with your compute subnet
+
+SharedStorage:
+  - Name: parallel_gromacs
+    StorageType: Efs
+    MountDir: /shared/efs  # Mount path on all nodes
+    EfsSettings:
+      FileSystemId: fs-009c1609c9b11b093  # Replace with your EFS ID
