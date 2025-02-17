@@ -23,9 +23,10 @@ source /usr/local/gromacs/bin/GMXRC
 
 echo "GROMACS installation complete!"
 #installing NFS
-sudo apt install nfs-common -y
+sudo apt install nfs-common -y 
 sudo systemctl start nfs-utils
+sudo systemctl status nfs-utils
 
 # Mount EFS (will be automatically mounted via ParallelCluster)
 sudo mkdir -p /shared/efs
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport 172.31.15.95:/ /shared/efs
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0a0c571c98dcb5e93.efs.us-east-1.amazonaws.com:/ /shared/efs
