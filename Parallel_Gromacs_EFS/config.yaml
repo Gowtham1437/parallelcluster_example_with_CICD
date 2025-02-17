@@ -6,7 +6,7 @@ Image:
 HeadNode:
   InstanceType: t2.micro  # Adjust based on your needs
   Networking:
-    SubnetId: subnet-03ae42bee932243fa  # Replace with your subnet
+    SubnetId: subnet-0baf76492331b932a  # Replace with your subnet
   Iam:
     S3Access:
       - BucketName: parallelcluster-6ab1f844b1d5d0e5-v1-do-not-delete  # Allow access to S3 bucket
@@ -26,11 +26,11 @@ Scheduling:
           MaxCount: 2
       Networking:
         SubnetIds:
-          - subnet-0043f46b606c32344  # Replace with your compute subnet
+          - subnet-0baf76492331b932a  # Replace with your compute subnet
 
 SharedStorage:
   - Name: parallel_gromacs
     StorageType: Efs
     MountDir: /shared/efs  # Mount path on all nodes
     EfsSettings:
-      FileSystemId: fs-009c1609c9b11b093  # Replace with your EFS ID
+      FileSystemId: fs-0a0c571c98dcb5e93  # Replace with your EFS ID
